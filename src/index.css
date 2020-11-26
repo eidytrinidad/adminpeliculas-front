@@ -1,13 +1,145 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.contenedor{
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.home{
+  width: 100%;
+  padding-top: 100px;
+}
+.home h1{
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.home .contenedor .botones{
+ display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.home .contenedor .botones .btn{
+  display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 20px 10px;
+ font-size: 25px;
+ margin: 0 20px;
+ }
+
+ .pantalla{
+   width: 100%;
+   margin-top: 20px;
+ 
+ }
+
+ .pantalla .contenedor h2{
+  text-align: center;
+}
+
+.pantalla .contenedor .botonBox{
+  margin-top: 25px;
+  width: 100%;
+
+  height:40px ;
+  display: flex;
+  justify-content: center;
+}
+.pantalla .contenedor .row{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.pantalla .contenedor .row .pelicula{
+width: 100%;
+max-width: 300px;
+ border: 2px solid #ccc;
+ margin-bottom: 2rem;
+ cursor: pointer;
+}
+.pantalla .contenedor .row .pelicula .imagen{
+ width: 100%;
+ height: 70vh;
+}
+.pantalla .contenedor .row .pelicula .imagen img{
+  width: 100%;
+  height:70vh;
+
+ }
+ .pantalla .contenedor .row .pelicula h4{
+margin: 1.5rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+ }
+
+ .pantalla{
+   width: 100%;
+   margin-top: 20px;
+ 
+ }
+
+ .pantalla .contenedor h2{
+  text-align: center;
+}
+
+.pantalla .contenedor .botonBox{
+  margin-top: 25px;
+  width: 100%;
+
+  height:40px ;
+  display: flex;
+  justify-content: center;
+}
+.pantalla .contenedor .row{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.pantalla .contenedor .row .pelicula{
+width: 100%;
+max-width: 300px;
+ border: 2px solid #ccc;
+ margin-bottom: 2rem;
+ cursor: pointer;
+}
+.pantalla .contenedor .row .pelicula .imagen{
+ width: 100%;
+ 
+}
+.pantalla .contenedor .row .pelicula .imagen img{
+  width: 100%;
+
+ }
+ .pantalla .contenedor .row .pelicula h4{
+margin: 1.5rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+ }
+
+ .agregar{
+   margin-top: 50px;
+   width: 100%;
+ }
+
+ .agregar h2{
+  text-align: center;
+  margin: 40px 0;
+}
+
+.agregar form{
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+}
+.agregar form label{
+  font-size: 20px;
+  font-weight: 500;
+  color:;
 }
