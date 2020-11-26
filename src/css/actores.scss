@@ -1,0 +1,84 @@
+.actores{
+    width: 100%;
+    position: relative;
+    .contenedor{
+        padding-top: 2rem;
+        h1{
+            text-align: center;
+        }
+        .botonBox{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+    }
+
+    .grid{
+        margin-top: 3rem;
+        width: 100%;
+        // max-width: 900px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .actor{
+            cursor: pointer;
+            margin-bottom: 2rem;
+            border-radius: .33rem;
+            width: 100%;
+            max-width: 220px;
+            box-shadow: 9px 7px 16px 0px rgba(77, 77, 77, 0.75);
+
+            .texto{
+                padding: 10px;
+                
+                text-align: center;
+            }
+            .imagen{
+                
+                width: 100%;
+                height: 317px;
+                img{
+                    width: 100%;
+                    height: 317px;
+                    border-radius: .33rem .33rem  0 0 ;
+                }
+            }
+
+            &:hover{
+               opacity: 0.9;
+            }
+        }
+    }
+
+    //Ventana Emergente
+    .popup{
+        position: absolute;
+        top:0;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        background-color: rgba($color: #000000, $alpha: .7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        article{
+            width: 600px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: .33rem;
+            padding: 20px;
+            .row{
+                .col{
+                    img{
+                        width: 100%;
+                        max-width: 100px;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@import "home";
+@import "actores";
+@import "peliculas";
+@import 'agregarActores';
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body,html{
+    height: 100%;
+}
+
+.contenedor{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}

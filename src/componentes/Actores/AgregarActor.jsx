@@ -27,7 +27,7 @@ export const AgregarActor = () => {
     e.preventDefault();
     const photo = fileRef.current.files[0];
     const imagen = photo.name;
-
+    console.log(photo.type);
     dispatch(StartCreateActors(imagen, formValues));
   };
 

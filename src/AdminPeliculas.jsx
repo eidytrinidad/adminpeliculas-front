@@ -1,12 +1,15 @@
 import { Provider } from "react-redux";
-import { store } from "./store/store";
 import { AppRouter } from "./rutas/AppRouter";
-function App() {
+import { store } from "./store/store";
+
+function AdminPeliculas() {
   return (
     <Provider store={store}>
       <AppRouter />
+      {/* <h1>Hola</h1> */}
     </Provider>
+   
   );
 }
 
-export default App;
+export default AdminPeliculas;

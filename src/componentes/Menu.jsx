@@ -20,7 +20,8 @@ export const Menu = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-         
+         <NavLink to="/peliculas" className="nav-link"> Peliculas</NavLink>
+         <NavLink to="/actores" className="nav-link"> Actores</NavLink>
         </div>
       </div>
     </nav>

@@ -1,126 +1,123 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+// import { actores } from "../../helper/actores";
+import { PopupActor } from "./PopupActor";
+import {useDispatch, useSelector} from 'react-redux'
+import {openModal} from '../../actions/ui'
 import { StartGetActores } from "../../actions/actores";
-import {ActoresComponent} from "./ActoresComponent";
-
 export const Actores = () => {
-  const dispatch = useDispatch();
-  const { actores } = useSelector((state) => state.actores);
-  const [sexo, setSexo] = useState([]);
+
+
   const [nombre, setNombre] = useState("");
-  const [search, setSearch] = useState([]);
+  const [sexo, setSexo] = useState("");
+  const [actoresResult, setaActoresResult] = useState([]);
+  const [actor, setActor] = useState([])
 
+  const dispatch = useDispatch()
+  const {modal} = useSelector(state => state.ui)
+  
+  const {actores }= useSelector(state => state.actores)
+  
   useEffect(() => {
-    dispatch(StartGetActores());
-  }, []);
+    dispatch(StartGetActores())
+    
+  }, [setaActoresResult]);
 
-  const handleSelect = (e) => {
-    const result = actores.filter((actor) => actor.sexo === e.target.value);
-    setSexo(result);
-  };
+  useMemo(() => {
+    setaActoresResult(actores)
+    
+  }, [actores])
+  
+  
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const nombreB = nombre.toLocaleLowerCase();
+  const handleNombre = (e) => {
+    setNombre(e.target.value);
+    const search = e.target.value.toLocaleLowerCase();
     const result = actores.filter((actor) =>
-      actor.nombrecompleto.toLocaleLowerCase().includes(nombreB)
+      actor.nombrecompleto.toLocaleLowerCase().includes(search)
     );
-    setSearch(result);
+    
+    setaActoresResult(result);
   };
+  const handleSexo = (e) => {
+    setSexo(e.target.value);
+    setNombre("")
+    if (e.target.value==="") {
+      setaActoresResult(actores)
+     
+    }else{
+      const result = actores.filter((actor) => actor.sexo === e.target.value);
+      setaActoresResult(result);
+    }
+  };
+
+  
 
   return (
-    <section className="pantalla">
+    <section className="actores">
       <article className="contenedor">
-        <h2>Seccion actores</h2>
+        <h1>Seccion Actores</h1>
         <div className="botonBox">
           <Link className="btn btn-dark" to="/actores/agregar">
             Agregar Actor
           </Link>
         </div>
-        <div className="row">
-          <form
-            className="mt-5 col-12 col-md-7 col-lg-8"
-            onSubmit={handleSubmit}
-          >
+
+        <form className="row">
+          <div className="form-group mt-5 col-10 col-md-7 col-lg-8">
             <input
               value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              onChange={handleNombre}
               type="text"
               name="search"
               className="form-control"
               placeholder="Ingrese el nombre del actor para buscar ex:(Tom Cruz)"
             />
-            <button className="btn btn-primary mt-2">Buscar por Nombre</button>
-          </form>
-          <form className="mt-5 col-12 col-md-4 col-lg-4">
+          </div>
+          <div className="form-group col-10 col-md-4 col-lg-4 mt-5">
             <select
               name="sexo"
-              id=""
               className="form-control"
-              onChange={handleSelect}
+              value={sexo}
+              onChange={(e) => setNombre(e.target.value)}
+              onChange={handleSexo}
             >
-              <option value="">Selccionar el Sexo</option>
+              <option value="">Selccionar el Sexo (Mostrar Todos)</option>
               <option value="masculino">Masculino</option>
               <option value="femenino">Femenino</option>
             </select>
-          </form>
-        </div>
-        <hr />
-        <div className="row mt-5">
+          </div>
+        </form>
+
+        <div className="grid">
+          
           {
-           actores&&
-           (sexo.length===0)
-             ?
-             actores.map(actor => (
-               <ActoresComponent key={actor.id} data={actor}/>
-             ))
-             
-             :
-             sexo.map(sexo => (
-              <ActoresComponent key={sexo.id} data={sexo}/>
-             ))
+           actoresResult!==undefined
+           &&        
+          actoresResult.map((actor) => (
+            <div
+              className="actor"
+              key={actor.id}
+              onClick={() => {
+               
+                dispatch(openModal())
+                setActor(actor)
+              }}
+            >
+              <div className="imagen">
+                <img src={`img/${actor.foto}`} alt="foto" />
+              </div>
+              <div className="texto">
+                <h5>{actor.nombrecompleto}</h5>
+              </div>
+            </div>
+          ))
           }
         </div>
       </article>
+
+      {modal && <PopupActor actor={actor}/>}
     </section>
   );
 };
-
-// {
-//   // console.log(sexo.length)
-//   actores&&
-// (sexo.length===0)
-//   ?
-//   actores.map(actor => (
-//     <div
-//     className="pelicula"
-//     key={actor.id}
-//     data-toggle="modal"
-//     data-target="#exampleModal"
-
-//     >
-//       <div className="imagen">
-//         <img src={`img/${actor.foto}`} alt="foto" />
-//       </div>
-//       <h4>{actor.nombrecompleto}</h4>
-
-//     </div>
-//   ))
-//   :
-//   sexo.map(sexo => (
-//     <div
-//     className="pelicula"
-//     key={sexo.id}
-//     data-toggle="modal"
-//     data-target="#exampleModal"
-
-//     >
-//       <div className="imagen">
-//         <img src={`img/${sexo.foto}`} alt="foto" />
-//       </div>
-//       <h4>{sexo.nombrecompleto}</h4>
-
-//     </div>
-//   ))
-// }

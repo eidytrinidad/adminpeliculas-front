@@ -12,4 +12,6 @@ export const types={
     deleteActor:"[actors]delete Actor",
     createActor:"[actors]Create Actor",
 
+    openModal:"[ui] Open Modal",
+    closModal:"[ui] Close Modal"
 }

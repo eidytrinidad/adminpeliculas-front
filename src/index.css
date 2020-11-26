@@ -3,6 +3,12 @@
   margin: 0;
   box-sizing: border-box;
 }
+html,
+body{
+  width: 100%;
+ height: 100%;
+ position: relative;
+}
 
 .contenedor{
   width: 100%;
@@ -26,9 +32,9 @@ align-items: center;
 }
 
 .home .contenedor .botones .btn{
-  display: flex;
+  /* display: flex;
  justify-content: center;
- align-items: center;
+ align-items: center; */
  padding: 20px 10px;
  font-size: 25px;
  margin: 0 20px;
@@ -123,7 +129,7 @@ margin: 1.5rem 0;
   font-size: 1.5rem;
  }
 
- .agregar{
+ /* .agregar{
    margin-top: 50px;
    width: 100%;
  }
@@ -142,4 +148,5 @@ margin: 1.5rem 0;
   font-size: 20px;
   font-weight: 500;
   color:;
-}
+} */
+
