@@ -12,7 +12,22 @@ export const peliculasReducer = (state = {}, action) => {
         ...state,
         pelicula: action.payload,
       };
-
+      case types.deleteActor:
+        return {
+          ...state,
+       
+        };
+        case types.createActor:
+          return {
+            ...state,
+           
+          };
+          case types.updateActor:
+            return {
+              ...state,
+             
+            };
+      
     default:
       return state;
   }

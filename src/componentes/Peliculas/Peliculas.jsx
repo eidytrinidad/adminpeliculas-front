@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { StartGetPeliculas } from "../../actions/peliculas";
-import { openModal } from "../../actions/ui";
+import { closeModal, openModal } from "../../actions/ui";
 import { PopupPelicula } from "./PopupPelicula";
 export const Peliculas = () => {
   const [nombre, setNombre] = useState("");
@@ -15,7 +15,9 @@ export const Peliculas = () => {
   const { peliculas } = useSelector((state) => state.peliculas);
 
   useEffect(() => {
+    dispatch(closeModal());
     dispatch(StartGetPeliculas());
+    
   }, [setPeliculasResult]);
 
   useMemo(() => {
@@ -50,7 +52,7 @@ export const Peliculas = () => {
       <article className="contenedor">
         <h1>Seccion Actores</h1>
         <div className="botonBox">
-          <Link className="btn btn-dark" to="/actores/agregar">
+          <Link className="btn btn-dark" to="/peliculas/agregar">
             Agregar Pelicula
           </Link>
         </div>
@@ -99,10 +101,11 @@ export const Peliculas = () => {
                 }}
               >
                 <div className="imagen">
-                  <img src={`img/${pelicula.foto}`} alt="foto" />
+                  <img src={`/img/${pelicula.foto}`} alt="foto" />
                 </div>
                 <div className="texto">
                   <h5>{pelicula.titulo}</h5>
+                  <Link to={`/peliculas/editar/${pelicula.id}`}>Editar</Link>
                 </div>
               </div>
             ))}

@@ -21,11 +21,11 @@ export const PopupPelicula = ({ pelicula }) => {
             <hr />
             
               
-              <p><b>Fecha de Estreno:</b> {fecha.toUpperCase()}</p>
+              <p><b>Fecha de Estreno:</b> {fecha}</p>
             
             <p>
               <b>Genero: </b>
-              {pelicula.genero.toUpperCase()}
+              {pelicula.genero}
             </p>
           </div>
         </div>

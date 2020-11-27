@@ -20,7 +20,7 @@ export const PopupActor = ({ actor }) => {
             
             <p>
               <b>Sexo: </b>
-              {actor.sexo.toUpperCase()}
+              {actor.sexo}
             </p>
           </div>
         </div>

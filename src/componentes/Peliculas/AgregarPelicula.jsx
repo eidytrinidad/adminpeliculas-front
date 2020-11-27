@@ -14,6 +14,7 @@ export const AgregarPelicula = () => {
   const { titulo, genero, fechadeestreno, foto } = formValues;
   const fileRef = useRef()
   const dispatch = useDispatch()
+  const [error, setError] = useState(false);
 
   const handleInputChange = ({ target }) => {
     setformValues({
@@ -24,10 +25,23 @@ export const AgregarPelicula = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (titulo === "") {
+      return setError(true);
+    }
+    if (genero=== "") {
+      return setError(true);
+    }
+    if (fechadeestreno=== "") {
+      return setError(true);
+    }
     const photo=fileRef.current.files[0]
+    if (photo === undefined) {
+      return setError(true);
+    }
     const imagen = photo.name;
     
     dispatch(StartCreateMovie(imagen,formValues))
+    setformValues(initialState)
   };
 
   return (
@@ -38,7 +52,10 @@ export const AgregarPelicula = () => {
         <div className="form-group">
           <label htmlFor="titulo">  Ingrese el Titulo de la Pelicula</label>
           <input
-            placeholder="ejemplo: Batman, Gemini Man...."
+           placeholder={
+            error ? `* Titulo no puede quedar vacio` : "ejemplo: Batman, Gemini Man...."
+          }
+         
             className="form-control"
             onChange={handleInputChange}
             type="text"
@@ -49,7 +66,9 @@ export const AgregarPelicula = () => {
         <div className="form-group">
         <label htmlFor="genero">  Ingrese el Genero de la Pelicula</label>
           <input
-            placeholder="ejemplo: Accion, Aventura..."
+             placeholder={
+              error ? `* Genero no puede quedar vacio` : "ejemplo: Accion, Aventura..."
+            }
             className="form-control"
             onChange={handleInputChange}
             type="text"
@@ -58,9 +77,11 @@ export const AgregarPelicula = () => {
           />
         </div>
         <div className="form-group">
-        <label htmlFor="fecha">  Ingrese Fecha de Estreno de la Pelicula</label>
+          <label htmlFor="fecha"> { error ? `*Fecha no puede quedar vacio` : "Ingrese Fecha de Estreno de la Pelicula"}</label>
           <input
-           
+            placeholder={
+              error ? `*Fecha no puede quedar vacio` : "Ingrese Fecha de Estreno de la Pelicula"
+            }
             className="form-control"
             onChange={handleInputChange}
             type="date"
@@ -69,7 +90,7 @@ export const AgregarPelicula = () => {
           />
         </div>
         <div className="form-group">
-        <label htmlFor="foto">  Seleccione Una Foto</label>
+        <label htmlFor="foto"> { error ? "Foto No Puede Quedar Vacia ":"Seleccione Una Foto"}</label>
           <input
           ref={fileRef}
             className="form-control"

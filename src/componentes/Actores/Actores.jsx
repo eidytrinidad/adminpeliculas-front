@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import { actores } from "../../helper/actores";
 import { PopupActor } from "./PopupActor";
 import {useDispatch, useSelector} from 'react-redux'
-import {openModal} from '../../actions/ui'
+import {closeModal, openModal} from '../../actions/ui'
 import { StartGetActores } from "../../actions/actores";
 export const Actores = () => {
 
@@ -20,7 +20,7 @@ export const Actores = () => {
   
   useEffect(() => {
     dispatch(StartGetActores())
-    
+    dispatch(closeModal())
   }, [setaActoresResult]);
 
   useMemo(() => {
@@ -110,6 +110,7 @@ export const Actores = () => {
               </div>
               <div className="texto">
                 <h5>{actor.nombrecompleto}</h5>
+                <Link to={`/actores/editar/${actor.id}`}>Editar</Link>
               </div>
             </div>
           ))
